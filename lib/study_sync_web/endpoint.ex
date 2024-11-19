@@ -51,4 +51,5 @@ defmodule StudySyncWeb.Endpoint do
   plug Plug.Session, @session_options
   plug Pow.Plug.Session, otp_app: :study_sync
   plug StudySyncWeb.Router
+
 end

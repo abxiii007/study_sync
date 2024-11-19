@@ -9,23 +9,41 @@ defmodule StudySyncWeb.Router do
     plug :put_root_layout, html: {StudySyncWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    # plug Pow.Plug.Base
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: StudySyncWeb.ErrorHandler
+  end
+  
+
   scope "/" do
     pipe_through :browser
 
     pow_routes()
+  end
+  scope "/", StudySyncWeb do
+    pipe_through [:browser, :protected] # Add your authentication pipeline here
+
+    resources "/groups", GroupController
   end
  
   
 
   scope "/", StudySyncWeb do
     pipe_through :browser
+
     get "/", PageController, :home
+    # get "/login", SessionController, :new
+    # post "/login", SessionController, :create
+    # delete "/logout", SessionController, :delete
+
   end
 
   # Other scopes may use custom stacks.
