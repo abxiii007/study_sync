@@ -3,3 +3,105 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+/* Light mode (default) */
+body {
+    background-color: white;
+    color: black;
+  }
+  
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+  
+  /* Other elements styling */
+  
+  /* Basic styles for light and dark modes */
+body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode {
+    background-color: #1a1a1a;
+    color: white;
+  }
+  
+  /* Lamp container */
+  .lamp-container {
+    display: flex;
+    /* justify-content: left; 
+    align-items: left; */
+    height: 100px;
+    margin-top: 20px;
+    position: absolute;
+    top: 1px;
+    /* right: 100px; */
+    left: 10px;
+  }
+  
+  /* Lamp design */
+  .lamp {
+    position: relative;  
+    width: 40px;
+    height: 100px;
+    background-color: #0a0a0ae0;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 4px 10px rgba(50, 50, 50, 0.82);
+  }
+  
+  /* String design */
+  .string {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    width: 2px;
+    height: 60px;
+    background-color: #000000;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Lightbulb design */
+  /* .lightbulb {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px yellow;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  } */
+
+  /* Light mode: bulb off */
+.lightbulb {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #999; /* Bulb is off (grey) */
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: none; /* No glow in light mode */
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+  /* Dark mode: when lamp is "off" */
+  body.dark-mode .lightbulb {
+    background-color: #333;
+    box-shadow: none;
+  }
+  /* Dark mode: bulb on */
+body.dark-mode .lightbulb {
+  background-color: yellow; /* Bulb is on (yellow) */
+  box-shadow: 0 0 20px yellow; /* Add glowing effect */
+}
+  
+  body.dark-mode .string {
+    background-color: #999;
+  }
+  
